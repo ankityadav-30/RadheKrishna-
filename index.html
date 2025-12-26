@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A spiritual journey into the eternal love of Radha and Krishna. Experience the divine Leelas and Vrindavan vibes.">
+    <meta name="keywords" content="Radha, Krishna, Vrindavan, Spirituality, ISKCON, Divine Love, Hindu, Bhakti">
+    <meta name="author" content="Ankit Yadav">
+    
+    <title>Radha Krishna | Eternal Divine Love</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel+Decorative:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Remix Icons (For UI Elements) -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <style>
+        /* =========================================
+           1. CSS VARIABLES (Design Tokens - from base.css)
+           ========================================= */
+        :root {
+            /* --- Palette: Vrindavan Theme --- */
+            /* Krishna (Peacock & Cloud) */
+            --color-krishna-blue: #1a237e;     /* Deep Royal Blue */
+            --color-peacock-teal: #00897b;     /* Peacock Neck Teal */
+            
+            /* Radha (Lotus & Gold) */
+            --color-radha-pink: #d81b60;       /* Deep Lotus Pink */
+            --color-gold: #ffd700;             /* Bright Gold */
+            --color-gold-dim: #c5a000;         /* Antique Gold for text */
+            
+            /* Earth & Atmosphere */
+            --color-saffron: #ff6f00;          /* Spiritual Orange */
+            --color-cream: #fff9f0;            /* Warm Off-White Background */
+            --color-sand: #f5e6ca;             /* Yamuna Sand */
+            --color-dark: #212121;             /* Main Text */
+            --color-light: #ffffff;            /* White Text */
+
+            /* --- Fonts --- */
+            --font-script: 'Great Vibes', cursive;       /* For decorative signatures */
+            --font-title: 'Cinzel Decorative', display;  /* For Section Headers */
+            --font-body: 'Poppins', sans-serif;          /* For readable text */
+
+            /* --- Spacing & Layout --- */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --border-radius: 12px;
+            
+            /* --- Transitions --- */
+            --transition-fast: 0.3s ease;
+            --transition-smooth: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* =========================================
+           2. RESET & NORMALIZATION
+           ========================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--color-cream);
+            color: var(--color-dark);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* =========================================
+           3. TYPOGRAPHY
+           ========================================= */
+        h1, h2, h3, h4, h5, h6 {
+            line-height: 1.2;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        h1.main-title {
+            font-family: var(--font-title);
+            font-weight: 700;
+            color: var(--color-light);
+            letter-spacing: 2px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        h2.section-title {
+            font-family: var(--font-title);
+            font-size: 2.5rem;
+            color: var(--color-krishna-blue);
+            position: relative;
+            display: inline-block;
+        }
+
+        .tagline {
+            font-family: var(--font-script);
+            font-size: 1.8rem;
+            color: var(--color-radha-pink);
+            display: block;
+            margin-bottom: -10px;
+        }
+
+        .sanskrit-shloka {
+            font-style: italic;
+            font-family: var(--font-title);
+            color: var(--color-gold);
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-sm);
+            letter-spacing: 1px;
+        }
+
+        p {
+            margin-bottom: var(--spacing-sm);
+            color: #555;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition-fast);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* =========================================
+           4. BUTTONS & UTILITIES
+           ========================================= */
+        .btn-primary, .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 30px;
+            font-family: var(--font-body);
+            font-weight: 600;
+            text-transform: uppercase;
+            border-radius: 50px;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--color-gold), var(--color-saffron));
+            color: var(--color-dark);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--color-light);
+            border: 1px solid var(--color-light);
+            backdrop-filter: blur(5px);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-light);
+            color: var(--color-krishna-blue);
+            transform: translateY(-3px);
+        }
+
+        .center-text { text-align: center; }
+        .mb-2 { margin-bottom: var(--spacing-md); }
+        .highlight { color: var(--color-gold); }
+
+        /* =========================================
+           LAYOUT CSS (Merged)
+           ========================================= */
+        /* 1. NAVIGATION BAR */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--transition-fast);
+        }
+
+        .logo {
+            font-family: var(--font-title);
+            font-size: 1.8rem;
+            color: var(--color-krishna-blue);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-link {
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 1rem;
+            color: var(--color-dark);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--color-radha-pink);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--color-krishna-blue);
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+
+        /* 2. HERO SECTION */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            /* Placeholder for hero-bg.png */
+            background-image: url('hero-bg.png'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(26, 35, 126, 0.4),
+                rgba(0, 0, 0, 0.6)
+            );
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 2rem;
+            color: var(--color-light);
+        }
+
+        .ornament-top {
+            width: 150px;
+            height: 60px;
+            margin: 0 auto var(--spacing-sm);
+            /* SVG Data URI as fallback for flute ornament */
+            background-image: url('flute-ornament.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+        }
+        
+        /* Simulating flute ornament with remix icon instead of image for safety */
+        .ornament-icon {
+            font-size: 3rem;
+            color: var(--color-gold);
+            margin-bottom: 1rem;
+            display: inline-block;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: var(--spacing-md);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            color: var(--color-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            animation: bounce 2s infinite;
+        }
+
+        /* 3. GENERAL LAYOUT & SECTIONS */
+        .section-padding {
+            padding: var(--spacing-lg) 5%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .bg-cream {
+            background-color: #fffaf0;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .text-block {
+            padding-right: 2rem;
+        }
+
+        .quote-box {
+            margin-top: var(--spacing-md);
+            padding: 1.5rem;
+            border-left: 4px solid var(--color-radha-pink);
+            background: rgba(216, 27, 96, 0.05);
+            font-style: italic;
+            color: #444;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .quote-box i {
+            font-size: 1.5rem;
+            color: var(--color-radha-pink);
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .img-frame {
+            position: relative;
+            border: 8px solid var(--color-gold);
+            border-radius: 200px 200px 12px 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            height: 500px;
+        }
+        
+        .img-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .img-frame:hover img {
+            transform: scale(1.05);
+        }
+
+        .img-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
+            pointer-events: none;
+        }
+
+        /* 4. PARALLAX DIVIDER */
+        .parallax-divider {
+            height: 400px;
+            /* Placeholder for parallax-bg.png */
+            background-image: url('parallax-bg.png'); 
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .overlay-dark {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .parallax-content {
+            position: relative;
+            z-index: 2;
+            color: var(--color-gold);
+            max-width: 700px;
+            padding: 0 20px;
+        }
+
+        .parallax-content h2 {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            line-height: 1.4;
+        }
+
+        /* 5. LEELA CARDS GRID */
+        .section-header { margin-bottom: 3rem; }
+        .separator-ornament {
+            font-size: 2rem;
+            color: var(--color-peacock-teal);
+            margin-top: -10px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .leela-card {
+            background: #fff;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border-bottom: 3px solid var(--color-peacock-teal);
+        }
+
+        .leela-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .card-img {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .leela-card:hover .card-img img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .card-content h3 {
+            font-family: var(--font-title);
+            color: var(--color-krishna-blue);
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* 6. DIYA SECTION */
+        #offering {
+            background: radial-gradient(circle at center, #2c1a1a 0%, #0f0f0f 100%);
+            color: var(--color-light);
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+        }
+
+        .glow-text {
+            text-shadow: 0 0 15px rgba(255, 111, 0, 0.6);
+            color: var(--color-gold);
+        }
+
+        .diya-container {
+            position: relative;
+            width: 150px;
+            height: 80px;
+            margin: 3rem auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .diya-container:hover {
+            transform: scale(1.05);
+        }
+
+        .diya-base {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, #8b4513, #5d4037);
+            border-radius: 10px 10px 80px 80px;
+            box-shadow: inset 0 -5px 10px rgba(0,0,0,0.5), 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 10;
+        }
+
+        .flame {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            width: 30px;
+            height: 50px;
+            background: radial-gradient(ellipse at bottom, #ffff00 0%, #ff6f00 60%, transparent 100%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            box-shadow: 0 0 20px #ff6f00, 0 0 40px #ff6f00;
+            z-index: 5;
+            transition: transform 0.5s ease;
+            transform-origin: bottom center;
+        }
+
+        .flame.lit {
+            transform: translateX(-50%) scale(1);
+            animation: flicker 0.1s infinite alternate;
+        }
+
+        .chant-text {
+            font-family: var(--font-script);
+            font-size: 2rem;
+            color: var(--color-gold);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        /* 7. FOOTER */
+        footer {
+            background-color: var(--color-krishna-blue);
+            color: white;
+            padding: 3rem 5% 1rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .footer-logo {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-gold);
+        }
+
+        .socials {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .socials a {
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.7);
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .socials a:hover {
+            color: var(--color-gold);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.6;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 1rem;
+        }
+
+        /* 8. AUDIO CONTROL */
+        .audio-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            border-radius: 50px;
+            color: var(--color-krishna-blue);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition-fast);
+        }
+
+        .audio-control:hover {
+            transform: scale(1.05);
+            background: var(--color-gold);
+            color: #fff;
+        }
+
+        /* =========================================
+           ANIMATIONS CSS (Merged)
+           ========================================= */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(1); opacity: 0.9; filter: blur(1px); }
+            50% { transform: translateX(-51%) scale(1.05) skewX(2deg); opacity: 0.8; filter: blur(2px); }
+            100% { transform: translateX(-49%) scale(1.1) skewX(-2deg); opacity: 1; filter: blur(1px); }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 1.2s cubic-bezier(0.215, 0.610, 0.355, 1.000) forwards;
+            opacity: 0; 
+            animation-fill-mode: forwards;
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-80px);
+            transition: opacity 1s ease-out, transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: opacity, transform;
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(80px);
+            transition: opacity 1s ease-out, transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: opacity, transform;
+        }
+
+        .fade-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
+
+        .visible {
+            opacity: 1 !important;
+            transform: translate(0, 0) !important;
+        }
+
+        /* =========================================
+           RESPONSIVE CSS (Merged)
+           ========================================= */
+        @media screen and (max-width: 1024px) {
+            :root { --spacing-lg: 3rem; }
+            h1.main-title { font-size: 4rem; }
+            h2.section-title { font-size: 2.2rem; }
+            .section-padding { padding: var(--spacing-lg) 4%; }
+            .img-frame { height: 400px; }
+            .parallax-divider { height: 300px; }
+        }
+
+        @media screen and (max-width: 768px) {
+            .menu-toggle { display: flex; z-index: 1001; }
+            .nav-links {
+                position: fixed;
+                top: 0; right: 0;
+                height: 100vh; width: 70%;
+                background: var(--color-cream);
+                flex-direction: column;
+                align-items: center; justify-content: center;
+                gap: 2rem;
+                transform: translateX(100%);
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                z-index: 1000;
+                padding-top: 60px;
+            }
+            .nav-links.active { transform: translateX(0); }
+            .menu-toggle.is-active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .menu-toggle.is-active .bar:nth-child(2) { opacity: 0; }
+            .menu-toggle.is-active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+            .hero-content { padding: 1rem; }
+            h1.main-title { font-size: 3rem; }
+            .split-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+            .slide-in-right, .slide-in-left { transform: translateX(0); opacity: 0; }
+            .img-frame { height: 350px; border-width: 5px; border-radius: 150px 150px 12px 12px; }
+            .card-grid { grid-template-columns: 1fr; padding: 0 10px; }
+        }
+
+        @media screen and (max-width: 480px) {
+            h1.main-title { font-size: 2.5rem; }
+            .hero-btns { flex-direction: column; gap: 1rem; width: 100%; align-items: center; }
+            .btn-primary, .btn-secondary { width: 100%; justify-content: center; max-width: 280px; }
+            .audio-control span { display: none; }
+            .chant-text { font-size: 1.2rem; line-height: 1.4; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- AUDIO PLAYER UI -->
+    <div class="audio-control" id="audioBtn" title="Toggle Flute Music">
+        <i class="ri-music-fill"></i> <span>Play Flute</span>
+    </div>
+    <!-- Dummy Audio source for demo purposes -->
+    <audio id="bgMusic" loop>
+        <source src="flute.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="ri-quill-pen-fill"></i> Radha<span class="highlight">Krishn</span>
+        </div>
+        
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#home" class="nav-link">Home</a></li>
+            <li><a href="#about" class="nav-link">The Bond</a></li>
+            <li><a href="#leelas" class="nav-link">Leelas</a></li>
+            <li><a href="#offering" class="nav-link">Offer Diya</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header id="home" class="hero-section">
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content fade-in-up">
+            <i class="ri-quill-pen-fill ornament-icon"></i>
+            
+            <h1 class="main-title">Prem Mandir</h1>
+            <p class="sanskrit-shloka">
+                "Tapta-kanchana-gaurangi Radhe Vrindavaneshvari<br>
+                Vrishabhanu-sute Devi Pranamami Hari-Priye"
+            </p>
+            <p class="subtitle">Witness the eternal dance of the Soul with the Divine.</p>
+            
+            <div class="hero-btns">
+                <a href="#about" class="btn-primary">Explore Leela <i class="ri-arrow-right-line"></i></a>
+                <a href="#offering" class="btn-secondary">Offer Prayer <i class="ri-fire-fill"></i></a>
+            </div>
+        </div>
+        
+        <div class="scroll-down">
+            <span>Scroll</span>
+            <i class="ri-arrow-down-double-line"></i>
+        </div>
+    </header>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="section-padding">
+        <div class="container split-layout">
+            <div class="text-block slide-in-left">
+                <span class="tagline">The Divine Union</span>
+                <h2 class="section-title">One Soul, Two Bodies</h2>
+                <p>
+                    Radha and Krishna are not merely historical figures; they represent the highest philosophy of love. 
+                    <strong>Krishna</strong> is the energetic (Shaktiman), and <strong>Radha</strong> is the energy (Shakti).
+                </p>
+                <p>
+                    Their love (Prema) exists beyond the material realm. In Vrindavan, every tree, every peacock, and every grain of sand 
+                    is immersed in their eternal devotion.
+                </p>
+                <div class="quote-box">
+                    <i class="ri-double-quotes-l"></i>
+                    To understand Krishna, you must understand Radha. She is the pleasure potency of the Divine.
+                </div>
+            </div>
+            
+            <div class="image-block slide-in-right">
+                <div class="img-frame">
+                    <!-- Placeholder for about-main.png -->
+                    <img src="about-main.png" alt="Radha Krishna Temple Art">
+                    <div class="img-overlay"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PARALLAX QUOTE -->
+    <section class="parallax-divider">
+        <div class="overlay-dark"></div>
+        <div class="parallax-content fade-on-scroll">
+            <h2>"Everything rests upon Me, as pearls are strung on a thread."</h2>
+            <p>- Bhagavad Gita (7.7)</p>
+        </div>
+    </section>
+
+    <!-- LEELAS (Stories) -->
+    <section id="leelas" class="section-padding bg-cream">
+        <div class="container">
+            <div class="section-header center-text">
+                <span class="tagline">Timeless Tales</span>
+                <h2 class="section-title">The Divine Leelas</h2>
+                <div class="separator-ornament">✻</div>
+            </div>
+
+            <div class="card-grid">
+                <!-- Card 1 -->
+                <article class="leela-card fade-on-scroll">
+                    <div class="card-img">
+                        <!-- Placeholder for leela-1.png (Makhan Chor) -->
+                        <img src="leela-1.png" alt="Butter Thief">
+                    </div>
+                    <div class="card-content">
+                        <h3><i class="ri-goblet-fill"></i> Makhan Chor</h3>
+                        <p>The sweet pastime where Krishna steals butter, symbolizing stealing the hearts of His devotees from material attachments.</p>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="leela-card fade-on-scroll">
+                    <div class="card-img">
+                        <!-- Placeholder for leela-2.png (Flute) -->
+                        <img src="leela-2.png" alt="Flute Playing">
+                    </div>
+                    <div class="card-content">
+                        <h3><i class="ri-music-2-fill"></i> The Divine Flute</h3>
+                        <p>When Krishna plays His Bansuri, the entire universe pauses. The Gopis leave everything behind, drawn by the call of the Divine.</p>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="leela-card fade-on-scroll">
+                    <div class="card-img">
+                        <!-- Placeholder for leela-3.png (Govardhan/Nature) -->
+                        <img src="leela3.png" alt="Govardhan Hill">
+                    </div>
+                    <div class="card-content">
+                        <h3><i class="ri-landscape-fill"></i> Govardhan Leela</h3>
+                        <p>To protect the villagers of Vraja, Krishna lifted the mighty Govardhan Hill on his little finger, defeating the pride of Indra.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE DIYA -->
+    <section id="offering" class="section-padding">
+        <div class="container center-text">
+            <h2 class="section-title glow-text">Offer a Light to the Divine</h2>
+            <p class="mb-2">Click the Diya to light it and offer your prayers.</p>
+            
+            <div class="diya-container" id="diyaContainer">
+                <div class="diya-base"></div>
+                <div class="flame" id="flame"></div>
+            </div>
+            
+            <div class="chant-text" id="chantText">
+                Hare Krishna Hare Krishna, Krishna Krishna Hare Hare...
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">RadheRadhe</div>
+            <ul class="socials">
+                <li><a href="#"><i class="ri-instagram-line"></i></a></li>
+                <li><a href="#"><i class="ri-youtube-line"></i></a></li>
+                <li><a href="#"><i class="ri-twitter-x-line"></i></a></li>
+            </ul>
+            <p class="copyright">
+                &copy; 2024 Spiritual Web Design. Made with <i class="ri-heart-fill" style="color: red;"></i> in India.
+            </p>
+        </div>
+    </footer>
+
+    <!-- MAIN LOGIC -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            console.log("%c Jai Shri Krishna! 🙏 \nWelcome to the eternal love of Radha & Krishna.", "color: #D4AF37; font-size: 16px; font-weight: bold; background: #1a237e; padding: 10px; border-radius: 5px;");
+
+            /* =========================================
+               NAVIGATION
+               ========================================= */
+            const navbar = document.querySelector('.navbar');
+            const menuToggle = document.getElementById('mobile-menu');
+            const navLinksContainer = document.querySelector('.nav-links');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            if (menuToggle && navLinksContainer) {
+                menuToggle.addEventListener('click', () => {
+                    menuToggle.classList.toggle('is-active');
+                    navLinksContainer.classList.toggle('active');
+                    const isExpanded = menuToggle.classList.contains('is-active');
+                    menuToggle.setAttribute('aria-expanded', isExpanded);
+                });
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinksContainer.classList.contains('active')) {
+                        menuToggle.classList.remove('is-active');
+                        navLinksContainer.classList.remove('active');
+                    }
+                });
+            });
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.style.background = "rgba(255, 255, 255, 0.95)";
+                    navbar.style.boxShadow = "0 4px 20px rgba(0,0,0,0.1)";
+                } else {
+                    navbar.style.background = "rgba(255, 255, 255, 0.85)";
+                    navbar.style.boxShadow = "0 4px 30px rgba(0,0,0,0.05)";
+                }
+            });
+
+            /* =========================================
+               INTERSECTION OBSERVER (Scroll Animations)
+               ========================================= */
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15 
+            };
+
+            const scrollObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll(
+                '.fade-in-up, .slide-in-left, .slide-in-right, .fade-on-scroll'
+            );
+            
+            animatedElements.forEach(el => scrollObserver.observe(el));
+
+            /* =========================================
+               AUDIO PLAYER LOGIC
+               ========================================= */
+            const audioBtn = document.getElementById('audioBtn');
+            const audio = document.getElementById('bgMusic');
+            
+            if (audioBtn && audio) {
+                audio.volume = 0.4;
+
+                audioBtn.addEventListener('click', () => {
+                    if (audio.paused) {
+                        const playPromise = audio.play();
+                        
+                        if (playPromise !== undefined) {
+                            playPromise.then(() => {
+                                updateAudioUI(true);
+                            }).catch(error => {
+                                console.error("Audio play failed (No source available in demo):", error);
+                                alert("Background music would play here if the MP3 file was hosted. Visuals updated to 'Playing' state.");
+                                // Simulate UI update anyway for demo
+                                updateAudioUI(true);
+                            });
+                        }
+                    } else {
+                        audio.pause();
+                        updateAudioUI(false);
+                    }
+                });
+            }
+
+            function updateAudioUI(isPlaying) {
+                const icon = audioBtn.querySelector('i');
+                const text = audioBtn.querySelector('span');
+                
+                if (isPlaying) {
+                    if(icon) icon.className = 'ri-pause-fill';
+                    if(text) text.textContent = 'Pause Flute';
+                    audioBtn.style.background = 'var(--color-radha-pink)';
+                    audioBtn.style.color = '#fff';
+                    audioBtn.title = "Pause Divine Music";
+                } else {
+                    if(icon) icon.className = 'ri-music-fill';
+                    if(text) text.textContent = 'Play Flute';
+                    audioBtn.style.background = 'rgba(255, 255, 255, 0.9)';
+                    audioBtn.style.color = 'var(--color-krishna-blue)';
+                    audioBtn.title = "Play Divine Music";
+                }
+            }
+
+            /* =========================================
+               DIYA INTERACTION
+               ========================================= */
+            const diyaContainer = document.getElementById('diyaContainer');
+            const flame = document.getElementById('flame');
+            const chantText = document.getElementById('chantText');
+
+            if (diyaContainer && flame && chantText) {
+                diyaContainer.addEventListener('click', () => {
+                    const isLit = flame.classList.toggle('lit');
+                    
+                    if (isLit) {
+                        chantText.style.opacity = '1';
+                        chantText.style.transform = 'translateY(0)';
+                        diyaContainer.style.filter = "drop-shadow(0 0 15px rgba(255, 111, 0, 0.6))";
+                    } else {
+                        chantText.style.opacity = '0';
+                        chantText.style.transform = 'translateY(20px)';
+                        diyaContainer.style.filter = "none";
+                    }
+                });
+            }
+
+            /* =========================================
+               SMOOTH SCROLLING
+               ========================================= */
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerOffset = 80;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                    }
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>
