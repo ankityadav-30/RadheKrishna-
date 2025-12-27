@@ -1,0 +1,592 @@
+/* =========================================
+   1. CSS VARIABLES & TOKENS
+   ========================================= */
+:root {
+    /* Color Palette */
+    --color-krishna-blue: #1a237e;
+    --color-peacock-teal: #00897b;
+    --color-radha-pink: #d81b60;
+    --color-gold: #ffd700;
+    --color-saffron: #ff6f00;
+    --color-cream: #fff9f0;
+    --color-dark: #212121;
+    --color-light: #ffffff;
+
+    /* Fonts */
+    --font-script: 'Great Vibes', cursive;
+    --font-title: 'Cinzel Decorative', display;
+    --font-body: 'Poppins', sans-serif;
+
+    /* Layout & Spacing */
+    --border-radius: 12px;
+    --transition-fast: 0.3s ease;
+    --transition-slow: 0.8s ease;
+}
+
+/* =========================================
+   2. RESET & GLOBAL STYLES
+   ========================================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { 
+    scroll-behavior: smooth; 
+}
+
+body {
+    background-color: var(--color-cream);
+    color: var(--color-dark);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    position: relative; /* Context for fixed elements */
+}
+
+/* =========================================
+   3. SPECIAL EFFECTS & ANIMATIONS
+   ========================================= */
+
+/* Magic Mouse Sparkle */
+.sparkle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: var(--color-gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    animation: sparkleFade 1s forwards;
+    box-shadow: 0 0 8px var(--color-radha-pink);
+}
+
+@keyframes sparkleFade {
+    to { transform: translateY(20px) scale(0); opacity: 0; }
+}
+
+/* Falling Petals (Flower Shower) */
+.petal {
+    position: fixed;
+    top: -10%;
+    z-index: 9990;
+    user-select: none;
+    pointer-events: none;
+    animation-name: fall;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.1));
+}
+
+@keyframes fall {
+    0% { top: -10%; transform: translateX(0) rotate(0deg); opacity: 0.9; }
+    20% { transform: translateX(25px) rotate(45deg); }
+    40% { transform: translateX(-25px) rotate(90deg); }
+    60% { transform: translateX(25px) rotate(135deg); opacity: 0.9; }
+    100% { top: 110%; transform: translateX(-25px) rotate(225deg); opacity: 0; }
+}
+
+/* Click "Radhe Krishna" Chant Animation */
+.click-chant {
+    position: absolute;
+    font-family: var(--font-script);
+    font-size: 1.8rem;
+    color: var(--color-radha-pink);
+    pointer-events: none;
+    z-index: 10000;
+    white-space: nowrap;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+    animation: blowAway 1.5s ease-out forwards;
+}
+
+@keyframes blowAway {
+    0% { transform: translate(-50%, -50%) scale(0.5) rotate(0deg); opacity: 0; }
+    20% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(5deg); }
+    100% { transform: translate(var(--tx), var(--ty)) scale(0.9) rotate(var(--rot)); opacity: 0; }
+}
+
+/* Gold Gradient Text Shine */
+@keyframes shine {
+    to { background-position: 200% center; }
+}
+
+/* Button Ripple Effect */
+.ripple {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: rippleAnim 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes rippleAnim {
+    to { transform: scale(4); opacity: 0; }
+}
+
+/* =========================================
+   4. TYPOGRAPHY
+   ========================================= */
+h1.main-title {
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 5rem;
+    /* Gold-Saffron Gradient */
+    background: linear-gradient(to right, #ffd700, #ff6f00, #ffd700);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: 2px;
+    background-size: 200% auto;
+    animation: shine 4s linear infinite;
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.2));
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+h2.section-title {
+    font-family: var(--font-title);
+    font-size: 2.5rem;
+    color: var(--color-krishna-blue);
+    margin-bottom: 1rem;
+}
+
+.tagline {
+    font-family: var(--font-script);
+    font-size: 1.8rem;
+    color: var(--color-radha-pink);
+    display: block;
+}
+
+.sanskrit-shloka {
+    font-style: italic;
+    font-family: var(--font-title);
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* =========================================
+   5. NAVIGATION BAR
+   ========================================= */
+.navbar {
+    position: fixed;
+    top: 0; width: 100%; height: 80px;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 5%;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    z-index: 1000;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+    transition: var(--transition-fast);
+}
+
+.logo {
+    font-family: var(--font-title);
+    font-size: 1.8rem;
+    color: var(--color-krishna-blue);
+    display: flex; align-items: center; gap: 8px;
+}
+.logo .highlight { color: var(--color-radha-pink); }
+
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+
+.nav-link { 
+    text-decoration: none; 
+    color: var(--color-dark); 
+    font-weight: 500; 
+    position: relative; 
+    padding: 5px 0;
+}
+.nav-link::after {
+    content: ''; position: absolute; width: 0; height: 2px;
+    bottom: 0; left: 0; background-color: var(--color-radha-pink);
+    transition: width 0.3s ease;
+}
+.nav-link:hover::after { width: 100%; }
+
+.menu-toggle { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+.bar { width: 25px; height: 3px; background-color: var(--color-krishna-blue); transition: 0.3s; }
+
+/* =========================================
+   6. HERO SECTION
+   ========================================= */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    background-color: #000; /* Fallback */
+}
+
+/* Zoom/Ken Burns Effect on Background */
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url('hero-bg.png'); 
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+    animation: zoomEffect 20s infinite alternate;
+}
+@keyframes zoomEffect {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.15); }
+}
+
+.hero-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgba(26, 35, 126, 0.4), rgba(0, 0, 0, 0.6));
+    z-index: 1;
+}
+
+.hero-content { position: relative; z-index: 2; max-width: 800px; padding: 2rem; color: var(--color-light); }
+.subtitle { font-size: 1.2rem; margin-bottom: 2rem; color: rgba(255, 255, 255, 0.9); }
+
+/* =========================================
+   7. BUTTONS
+   ========================================= */
+.btn-primary, .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 30px; border-radius: 50px;
+    text-decoration: none; text-transform: uppercase; font-weight: 600;
+    font-size: 0.9rem; transition: var(--transition-fast);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden; /* For Ripple containment */
+    border: none;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--color-gold), var(--color-saffron));
+    color: var(--color-dark);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(255, 215, 0, 0.6); }
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1); color: var(--color-light);
+    border: 1px solid var(--color-light); backdrop-filter: blur(5px);
+}
+.btn-secondary:hover { background: var(--color-light); color: var(--color-krishna-blue); transform: translateY(-3px); }
+
+/* Control Buttons (Floating) */
+.controls-wrapper {
+    position: fixed; bottom: 30px; right: 30px; z-index: 1001;
+    display: flex; flex-direction: column; gap: 15px; align-items: flex-end;
+}
+.control-btn {
+    background: rgba(255, 255, 255, 0.9); padding: 10px 20px;
+    border-radius: 50px; color: var(--color-krishna-blue);
+    font-weight: 600; font-size: 0.9rem; cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 8px;
+    transition: var(--transition-fast);
+    position: relative; overflow: hidden;
+}
+.control-btn:hover { transform: scale(1.05); background: var(--color-gold); color: #fff; }
+.control-btn.active { background: var(--color-radha-pink); color: #fff; }
+
+/* =========================================
+   8. SECTIONS (General & About)
+   ========================================= */
+.section-padding { padding: 4rem 5%; }
+.container { max-width: 1200px; margin: 0 auto; }
+.split-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+
+/* About Section Specifics */
+.quote-box {
+    margin-top: 2rem; padding: 1.5rem;
+    border-left: 4px solid var(--color-radha-pink);
+    background: rgba(216, 27, 96, 0.05);
+    font-style: italic; color: #555; border-radius: 0 12px 12px 0;
+}
+.img-frame {
+    position: relative; border: 8px solid var(--color-gold);
+    border-radius: 200px 200px 12px 12px; overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15); height: 500px;
+    background: #eee;
+}
+.img-frame img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+.img-frame:hover img { transform: scale(1.05); }
+
+/* Parallax Divider */
+.parallax-divider {
+    height: 400px; background-image: url('parallax-bg.png');
+    background-attachment: fixed; background-size: cover; background-position: center;
+    position: relative; display: flex; align-items: center; justify-content: center;
+    text-align: center; background-color: #222;
+}
+.overlay-dark { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
+.parallax-content { position: relative; z-index: 2; color: var(--color-gold); padding: 0 20px; }
+
+/* =========================================
+   9. LEELAS CARDS (3D Tilt)
+   ========================================= */
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; }
+
+.leela-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(26, 35, 126, 0.08);
+    transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+    border-bottom: 3px solid var(--color-peacock-teal);
+    transform-style: preserve-3d; /* Essential for tilt */
+    perspective: 1000px;
+}
+/* Note: The mousemove JS controls the transform, we just set initial state */
+
+.card-img { height: 220px; overflow: hidden; background: #ddd; position: relative; z-index: 1; }
+.card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+.leela-card:hover .card-img img { transform: scale(1.1); }
+
+.card-content { 
+    padding: 1.5rem; text-align: center; position: relative; z-index: 2; 
+    background: rgba(255,255,255,0.4); 
+}
+.card-content h3 { font-family: var(--font-title); color: var(--color-krishna-blue); margin-bottom: 0.8rem; }
+
+/* =========================================
+   10. PRAYER FORM
+   ========================================= */
+#prayer {
+    text-align: center;
+    background: linear-gradient(to bottom, #fff9f0, #fff3e0);
+}
+
+.prayer-container {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+    border: 1px solid rgba(255,255,255,0.8);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.form-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-krishna-blue);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid rgba(255, 215, 0, 0.5); /* Semi-transparent gold */
+    border-radius: var(--border-radius);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    background: rgba(255,255,255,0.95);
+    outline: none;
+    transition: 0.3s;
+    color: var(--color-dark);
+}
+
+.form-input:focus {
+    border-color: var(--color-radha-pink);
+    box-shadow: 0 0 15px rgba(216, 27, 96, 0.15);
+}
+
+textarea.form-input {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* =========================================
+   11. OFFERING (DIYA) SECTION
+   ========================================= */
+#offering {
+    background: radial-gradient(circle at center, #2c1a1a 0%, #0f0f0f 100%);
+    color: #fff; min-height: 500px; display: flex; align-items: center;
+}
+
+.glow-text { text-shadow: 0 0 15px rgba(255, 111, 0, 0.6); color: var(--color-gold); }
+
+.diya-container {
+    position: relative; width: 150px; height: 80px; margin: 3rem auto;
+    cursor: pointer; transition: transform 0.3s ease;
+}
+.diya-container:hover { transform: scale(1.05); }
+
+.diya-base {
+    width: 100%; height: 100%; background: linear-gradient(to bottom, #8b4513, #5d4037);
+    border-radius: 10px 10px 80px 80px; box-shadow: inset 0 -5px 10px rgba(0,0,0,0.5);
+    position: relative; z-index: 10;
+}
+
+.flame {
+    position: absolute; top: -40px; left: 50%; transform: translateX(-50%) scale(0);
+    width: 30px; height: 50px;
+    background: radial-gradient(ellipse at bottom, #ffff00 0%, #ff6f00 60%, transparent 100%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    box-shadow: 0 0 20px #ff6f00; z-index: 5; transition: transform 0.5s ease;
+}
+.flame.lit { transform: translateX(-50%) scale(1); animation: flicker 0.1s infinite alternate; }
+
+@keyframes flicker {
+    0% { transform: translateX(-50%) scale(1); opacity: 0.9; }
+    100% { transform: translateX(-49%) scale(1.1); opacity: 1; }
+}
+
+.chant-text {
+    font-family: var(--font-script); font-size: 2rem; color: var(--color-gold);
+    opacity: 0; transform: translateY(20px); transition: all 1s ease;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+/* =========================================
+   12. DIVINE BLESSINGS BOX
+   ========================================= */
+#blessings {
+    background-image: url('parallax-bg.png');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    padding-bottom: 6rem;
+    color: #fff;
+}
+
+#blessings h2.section-title { color: var(--color-gold); text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+#blessings p { text-shadow: 0 1px 2px rgba(0,0,0,0.6); }
+
+.blessing-box-container {
+    position: relative; width: 140px; height: 120px;
+    margin: 2rem auto 1rem; cursor: pointer; transition: transform 0.3s;
+    display: inline-block;
+}
+.blessing-box-container:hover { transform: scale(1.05) rotate(-2deg); }
+
+.blessing-box-body {
+    width: 100%; height: 80px;
+    background: linear-gradient(45deg, #ffd700, #ff8f00);
+    position: absolute; bottom: 0; left: 0;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2); z-index: 2;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid #fff;
+}
+.blessing-box-body::after {
+    content: ''; position: absolute; width: 20px; height: 100%;
+    background: var(--color-radha-pink); left: 50%; transform: translateX(-50%); z-index: 3;
+}
+
+.blessing-box-lid {
+    width: 110%; height: 40px;
+    background: linear-gradient(45deg, #ff8f00, #ffd700);
+    position: absolute; top: 0; left: -5%;
+    border-radius: 12px 12px 4px 4px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15); z-index: 5;
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.6s ease;
+    transform-origin: top center;
+    border: 2px solid #fff;
+    display: flex; justify-content: center;
+}
+.blessing-box-lid::after {
+    content: ''; position: absolute; width: 20px; height: 100%;
+    background: var(--color-radha-pink); z-index: 6;
+}
+
+/* Opening State */
+.blessing-box-container.opened .blessing-box-lid {
+    transform: translateY(-80px) rotate(-15deg) scale(0.9); opacity: 0;
+}
+
+.blessing-msg {
+    font-family: var(--font-script); font-size: 2.2rem;
+    color: var(--color-peacock-teal); margin-top: 1rem; opacity: 0;
+    transform: translateY(20px); transition: all 1s ease;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.blessing-particle {
+    position: absolute; pointer-events: none; font-size: 1.8rem; z-index: 99;
+    animation: flyOut 2s forwards ease-out; text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.morpankh-style {
+    color: var(--color-peacock-teal); font-size: 2rem;
+    filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.6));
+}
+
+@keyframes flyOut {
+    0% { transform: translate(0, 0) scale(0.5) rotate(0); opacity: 1; }
+    100% { transform: translate(var(--tx), var(--ty)) scale(1.2) rotate(var(--rot)); opacity: 0; }
+}
+
+/* =========================================
+   13. FOOTER
+   ========================================= */
+footer { 
+    background-color: var(--color-krishna-blue); 
+    color: white; 
+    padding: 3rem 5% 1rem; 
+    text-align: center; 
+}
+.footer-logo { font-family: var(--font-title); font-size: 2rem; margin-bottom: 1.5rem; color: var(--color-gold); }
+.socials { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 2rem; list-style: none; }
+.socials a { color: rgba(255,255,255,0.7); font-size: 1.5rem; transition: 0.3s; }
+.socials a:hover { color: var(--color-gold); }
+.copyright { font-size: 0.9rem; opacity: 0.6; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; }
+
+/* =========================================
+   14. RESPONSIVE MEDIA QUERIES
+   ========================================= */
+@media screen and (max-width: 1024px) {
+    h1.main-title { font-size: 3.5rem; }
+    .img-frame { height: 400px; }
+}
+
+@media screen and (max-width: 768px) {
+    /* Mobile Menu Logic */
+    .menu-toggle { display: flex; z-index: 1001; }
+    
+    .nav-links {
+        position: fixed; top: 0; right: 0; height: 100vh; width: 70%;
+        background: var(--color-cream); 
+        flex-direction: column;
+        align-items: center; justify-content: center; 
+        transform: translateX(100%);
+        transition: transform 0.4s ease; 
+        z-index: 1000; 
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    }
+    .nav-links.active { transform: translateX(0); }
+    
+    /* Hamburger Animation */
+    .menu-toggle.is-active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .menu-toggle.is-active .bar:nth-child(2) { opacity: 0; }
+    .menu-toggle.is-active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    
+    /* Layout Adjustments */
+    .split-layout { grid-template-columns: 1fr; gap: 2rem; }
+    .img-frame { height: 350px; border-radius: 150px 150px 12px 12px; }
+    
+    /* Mobile Controls */
+    .control-btn span { display: none; } /* Hide text to save space */
+    .control-btn { padding: 12px; border-radius: 50%; }
+    
+    /* Disable Complex 3D Tilt on Mobile for Performance */
+    .leela-card { transform: none !important; }
+}
