@@ -1,0 +1,82 @@
+/* =========================================
+   RESPONSIVE MEDIA QUERIES
+   ========================================= */
+
+@media screen and (max-width: 1024px) {
+    .img-frame { height: 400px; }
+    .hero-mandala { width: 400px; height: 400px; }
+}
+
+@media screen and (max-width: 768px) {
+    /* Mobile Menu Logic */
+    .menu-toggle { display: flex; z-index: 1001; }
+    
+    .nav-links {
+        position: fixed; top: 0; right: 0; 
+        height: 100vh; /* Fallback */
+        height: 100svh; /* Prevents mobile browser address bar layout jumps */
+        width: 70%;
+        background: rgba(255, 249, 240, 0.97);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        flex-direction: column;
+        align-items: center; justify-content: center; 
+        transform: translateX(100%);
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+        z-index: 1000; 
+        box-shadow: -5px 0 30px rgba(0,0,0,0.15);
+    }
+    .nav-links.active { transform: translateX(0); }
+    
+    /* Hamburger Animation */
+    .menu-toggle.is-active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .menu-toggle.is-active .bar:nth-child(2) { opacity: 0; }
+    .menu-toggle.is-active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    
+    /* Layout Adjustments */
+    .split-layout { grid-template-columns: 1fr; gap: 2rem; }
+    .img-frame { height: 350px; border-radius: 150px 150px 16px 16px; }
+    
+    .quote-glow-text { font-size: 1.4rem; }
+    
+    /* Mobile Controls */
+    .control-btn span { display: none; }
+    .control-btn { padding: 12px; border-radius: 50%; }
+    
+    /* Disable Complex 3D Tilt on Mobile for Performance */
+    .leela-card { transform: none !important; }
+    
+    .hero-mandala { width: 300px; height: 300px; }
+    
+    .scroll-indicator { display: none; }
+    
+    .sacred-divider { height: 60px; }
+    
+    .scroll-to-top { left: 15px; bottom: 80px; width: 44px; height: 44px; }
+    
+    .prayer-container { padding: 2rem 1.5rem; }
+    
+    .floating-lotus { display: none; }
+    .water-diyas { display: none; }
+    
+    /* Fix iOS Parallax Bug */
+    .parallax-divider, #blessings {
+        background-attachment: scroll;
+    }
+    
+    /* Nav links gap */
+    .nav-links { gap: 1.5rem; padding-top: 2rem; }
+}
+
+@media screen and (max-width: 480px) {
+    .hero-content { padding-top: 60px; } /* Less padding on small screens */
+    .hero-content > * { margin-bottom: 0.5rem !important; } /* Tighten vertical spacing */
+    .section-padding { padding: 3rem 4%; }
+    .hero-cta-group { flex-direction: column; gap: 1rem; margin-top: 1rem; }
+    
+    /* Fix card grid on small phones */
+    .card-grid { grid-template-columns: 1fr; }
+    
+    /* Blessing section padding */
+    #blessings { padding: 3rem 4% 4rem; }
+}

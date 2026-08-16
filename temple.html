@@ -18,11 +18,12 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
 
-        body {
+        html, body {
             background-color: #000;
-            height: 100vh;
-            width: 100vw;
+            height: 100%;
+            width: 100%;
             overflow: hidden;
+            position: fixed; /* Completely locks scrolling on mobile iOS/Android */
             font-family: 'Cinzel Decorative', cursive;
             user-select: none;
             touch-action: none;
@@ -78,7 +79,7 @@
            VIDEO & UI
            --------------------------------- */
         .video-container {
-            position: absolute;
+            position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
             z-index: 1;
