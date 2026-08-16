@@ -565,6 +565,8 @@ h2.section-title {
 
 /* Om symbol */
 .hero-om-symbol {
+    display: block; /* Explicitly prevents overlapping with h1 */
+    line-height: 1.2;
     font-size: clamp(3rem, 6vw, 4rem);
     color: var(--color-gold);
     margin-bottom: 0.5rem;
@@ -579,13 +581,9 @@ h2.section-title {
 }
 
 .hero-content { 
-    position: relative; z-index: 3; max-width: 800px; padding: 1rem 2rem; color: var(--color-light); 
+    position: relative; z-index: 3; max-width: 800px; padding: 2rem; color: var(--color-light); 
     padding-top: 80px; /* Offset for navbar */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem; /* Mathematically prevents overlap */
+    display: block; /* Restored from flexbox to bring back elegant spacing */
 }
 
 .subtitle { 
