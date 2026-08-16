@@ -466,7 +466,8 @@ h2.section-title {
     position: relative;
     height: 100vh; /* Fallback for older browsers */
     height: 100svh; /* Prevents mobile browser address bar layout jumps */
-    width: 100%;
+    width: 100vw;
+    width: 100svw; /* Fix horizontal gap by locking to viewport width */
     display: flex; align-items: center; justify-content: center;
     text-align: center;
     overflow: hidden;
