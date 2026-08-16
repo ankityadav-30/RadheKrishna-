@@ -464,7 +464,8 @@ h2.section-title {
    ========================================= */
 .hero-section {
     position: relative;
-    height: 100vh;
+    height: 100vh; /* Fallback for older browsers */
+    height: 100svh; /* Prevents mobile browser address bar layout jumps */
     width: 100%;
     display: flex; align-items: center; justify-content: center;
     text-align: center;
