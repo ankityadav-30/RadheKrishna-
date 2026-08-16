@@ -579,8 +579,13 @@ h2.section-title {
 }
 
 .hero-content { 
-    position: relative; z-index: 3; max-width: 800px; padding: 2rem; color: var(--color-light); 
-    padding-top: 80px; /* Offset for navbar on mobile */
+    position: relative; z-index: 3; max-width: 800px; padding: 1rem 2rem; color: var(--color-light); 
+    padding-top: 80px; /* Offset for navbar */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem; /* Mathematically prevents overlap */
 }
 
 .subtitle { 
@@ -1710,7 +1715,6 @@ footer {
     .leela-card { transform: none !important; }
     
     .hero-mandala { width: 300px; height: 300px; }
-    .hero-om-symbol { font-size: 3rem; }
     
     .scroll-indicator { display: none; }
     
@@ -1733,8 +1737,10 @@ footer {
 }
 
 @media screen and (max-width: 480px) {
+    .hero-content { padding-top: 60px; } /* Less padding on small screens */
+    .hero-content > * { margin-bottom: 0.5rem !important; } /* Tighten vertical spacing */
     .section-padding { padding: 3rem 4%; }
-    .hero-cta-group { flex-direction: column; gap: 1rem; }
+    .hero-cta-group { flex-direction: column; gap: 1rem; margin-top: 1rem; }
     
     /* Fix card grid on small phones */
     .card-grid { grid-template-columns: 1fr; }
