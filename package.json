@@ -1,0 +1,26 @@
+{
+  "name": "radhekrishna-",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A visually rich, spiritual, and animated website dedicated to the eternal love and divine bond of **Shri Radha and Shri Krishna**.  \r Built using **HTML, CSS, and JavaScript**, this project blends modern web aesthetics with Indian spiritual art.",
+  "main": "script.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ankityadav-30/RadheKrishna-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ankityadav-30/RadheKrishna-/issues"
+  },
+  "homepage": "https://github.com/ankityadav-30/RadheKrishna-#readme",
+  "devDependencies": {
+    "vite": "^8.2.1"
+  }
+}

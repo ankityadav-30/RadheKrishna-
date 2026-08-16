@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Divine Shlokas from the Bhagavad Gita with translations in multiple languages.">
+    <title>Bhagavad Gita | Divine Shlokas</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel+Decorative:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Remix Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="gita.css">
+</head>
+<body>
+
+    <!-- ===================== NAVIGATION ===================== -->
+    <nav class="navbar" id="mainNav">
+        <a href="index.html" class="logo">
+            <i class="ri-arrow-left-line"></i> Back to Home
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html#leelas" class="nav-link">Divine Leelas</a></li>
+            <li><a href="temple.html" class="nav-link">Virtual Darshan</a></li>
+        </ul>
+    </nav>
+
+    <!-- ===================== HERO SECTION ===================== -->
+    <header class="gita-hero">
+        <div class="gita-mandala"></div>
+        <div class="gita-hero-content">
+            <h1 class="gita-title">Bhagavad Gita</h1>
+            <p class="gita-subtitle">18 timeless verses of supreme wisdom, now accessible in <span id="langCount">12</span> languages.</p>
+            
+            <div class="gita-controls">
+                <div class="search-box">
+                    <i class="ri-search-line search-icon"></i>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search by topic, chapter, or keyword...">
+                </div>
+                
+                <div class="global-lang-wrapper">
+                    <span><i class="ri-translate-2"></i> Global Translation:</span>
+                    <select id="globalLang" class="global-lang-select">
+                        <option value="en" selected>English</option>
+                        <option value="hi">हिन्दी</option>
+                        <option value="ur">اردو</option>
+                        <option value="ta">தமிழ்</option>
+                        <option value="fr">Français</option>
+                        <option value="zh">中文</option>
+                        <option value="es">Español</option>
+                        <option value="ar">العربية</option>
+                        <option value="ja">日本語</option>
+                        <option value="de">Deutsch</option>
+                        <option value="ru">Русский</option>
+                        <option value="pt">Português</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===================== SHLOKA GRID ===================== -->
+    <main class="gita-container">
+        <div id="shlokaGrid" class="shloka-grid">
+            <!-- Cards injected by gita.js -->
+        </div>
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer>
+        <div class="footer-mandala"></div>
+        <div class="footer-content">
+            <h3 class="footer-logo">Radha Krishna</h3>
+            <ul class="socials">
+                <li><a href="#" aria-label="Instagram"><i class="ri-instagram-line"></i></a></li>
+                <li><a href="#" aria-label="Facebook"><i class="ri-facebook-circle-line"></i></a></li>
+                <li><a href="#" aria-label="Twitter"><i class="ri-twitter-line"></i></a></li>
+            </ul>
+            <p class="copyright">"सर्वधर्मान्परित्यज्य मामेकं शरणं व्रज" <br><br>&copy; 2024 Spiritual Journey. Crafted with Devotion.</p>
+        </div>
+    </footer>
+
+    <button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top">
+        <i class="ri-arrow-up-s-line"></i>
+        <span class="stt-lotus">🪷</span>
+    </button>
+
+    <!-- Scripts -->
+    <script src="gita.js"></script>
+</body>
+</html>

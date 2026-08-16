@@ -1,0 +1,349 @@
+/* =========================================
+   BHAGAVAD GITA SHLOKS — STYLES
+   ========================================= */
+
+@import url('style.css'); /* Inherit base variables and animations */
+
+:root {
+    --gita-bg: #030a16;
+    --gita-card: rgba(13, 22, 45, 0.7);
+    --gita-gold: #ffb300;
+    --gita-gold-light: #ffe57f;
+    --gita-text: #e0e0e0;
+    --gita-sanskrit: #ffffff;
+}
+
+body {
+    background-color: var(--gita-bg);
+    color: var(--gita-text);
+}
+
+/* =========================================
+   HERO SECTION
+   ========================================= */
+.gita-hero {
+    position: relative;
+    padding: 120px 5% 60px;
+    text-align: center;
+    background: radial-gradient(circle at top center, rgba(255, 179, 0, 0.1) 0%, transparent 70%);
+    overflow: hidden;
+}
+
+.gita-mandala {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    border: 1px solid rgba(255, 179, 0, 0.05);
+    border-radius: 50%;
+    animation: mandalaRotate 120s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.gita-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.gita-title {
+    font-family: var(--font-title);
+    font-size: 4rem;
+    color: var(--gita-gold);
+    margin-bottom: 1rem;
+    text-shadow: 0 0 20px rgba(255, 179, 0, 0.4);
+}
+
+.gita-subtitle {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    color: var(--color-light);
+    opacity: 0.8;
+}
+
+/* =========================================
+   CONTROLS (Search & Global Lang)
+   ========================================= */
+.gita-controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 40px auto;
+    flex-wrap: wrap;
+    max-width: 800px;
+    position: relative;
+    z-index: 2;
+}
+
+.search-box {
+    position: relative;
+    flex: 1;
+    min-width: 250px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gita-gold);
+    font-size: 1.2rem;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 179, 0, 0.3);
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--gita-gold);
+    box-shadow: 0 0 15px rgba(255, 179, 0, 0.2);
+}
+
+.global-lang-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 8px 20px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 179, 0, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.global-lang-wrapper span {
+    color: var(--gita-gold);
+}
+
+.global-lang-select {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    outline: none;
+    cursor: pointer;
+}
+
+.global-lang-select option {
+    background: var(--gita-bg);
+    color: #fff;
+}
+
+/* =========================================
+   SHLOKA GRID & CARDS
+   ========================================= */
+.gita-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5% 5rem;
+}
+
+.shloka-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+}
+
+.shloka-card {
+    background: var(--gita-card);
+    border: 1px solid rgba(255, 179, 0, 0.15);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.shloka-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 179, 0, 0.1);
+    border-color: rgba(255, 179, 0, 0.3);
+}
+
+.shloka-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, var(--color-peacock-teal), var(--gita-gold));
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+.shloka-card-shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 179, 0, 0.05), transparent);
+    animation: cardSweep 8s infinite;
+    pointer-events: none;
+}
+
+.shloka-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    border-bottom: 1px solid rgba(255, 179, 0, 0.1);
+    padding-bottom: 1rem;
+}
+
+.chapter-badge, .verse-badge {
+    background: rgba(255, 179, 0, 0.1);
+    color: var(--gita-gold);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.topic-badge {
+    color: var(--color-radha-soft);
+    font-style: italic;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.shloka-sanskrit {
+    font-family: var(--font-title);
+    font-size: 1.4rem;
+    color: var(--gita-sanskrit);
+    text-align: center;
+    line-height: 1.8;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    margin: 1rem 0;
+}
+
+.shloka-hindi, .shloka-translation {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1.2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.meaning-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: var(--gita-gold-light);
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+}
+
+.translation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+}
+
+.translation-header .meaning-label {
+    margin-bottom: 0;
+}
+
+.lang-select {
+    background: rgba(255, 179, 0, 0.1);
+    color: var(--gita-gold);
+    border: 1px solid rgba(255, 179, 0, 0.2);
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lang-select:hover {
+    background: rgba(255, 179, 0, 0.2);
+}
+
+.lang-select option {
+    background: var(--gita-bg);
+    color: #fff;
+}
+
+.shloka-hindi p, .translation-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--gita-text);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* =========================================
+   NO RESULTS
+   ========================================= */
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 2rem;
+    background: rgba(255, 179, 0, 0.05);
+    border-radius: var(--border-radius);
+    border: 1px dashed rgba(255, 179, 0, 0.2);
+}
+
+.no-results-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+
+.no-results-hint {
+    opacity: 0.6;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+/* =========================================
+   ANIMATIONS
+   ========================================= */
+.animate-on-scroll {
+    opacity: 0;
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animate-on-scroll[data-animation="fadeUp"] {
+    transform: translateY(40px);
+}
+
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================================
+   MOBILE RESPONSIVENESS
+   ========================================= */
+@media screen and (max-width: 768px) {
+    .gita-title { font-size: 2.8rem; }
+    .shloka-grid { grid-template-columns: 1fr; }
+    .shloka-sanskrit { font-size: 1.2rem; }
+    .gita-controls { flex-direction: column; gap: 15px; }
+    .search-box, .global-lang-wrapper { width: 100%; }
+}

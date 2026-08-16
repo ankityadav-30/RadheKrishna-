@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virtual Darshan | Aarti Experience</title>
+    <title>Cinematic Virtual Darshan | Divine Aarti</title>
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
@@ -12,269 +12,95 @@
 
     <style>
         :root {
-            --cursor-size: 250px;
-            --lamp-glow: radial-gradient(circle, rgba(255,200,100,0.9) 0%, rgba(255,100,50,0.3) 50%, transparent 70%);
             --gold: #ffd700;
             --radha-pink: #d81b60;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; /* Hide default cursor */ }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
 
         body {
-            background-color: #050505;
+            background-color: #000;
             height: 100vh;
             width: 100vw;
             overflow: hidden;
+            font-family: 'Cinzel Decorative', cursive;
+            user-select: none;
+            touch-action: none;
+        }
+
+        /* ---------------------------------
+           MORPANKH TRANSITION
+           --------------------------------- */
+        #morpankh-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: #000;
+            z-index: 9999;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Cinzel Decorative', cursive;
-            user-select: none;
-            touch-action: none; /* Prevent default touch actions like scrolling */
-        }
-
-        /* Container */
-        .darshan-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            background: #000;
-        }
-
-        /* Deity Image */
-        .deity-image {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            opacity: 0.1; /* Very dim initially */
-            transition: opacity 0.5s ease;
+            transition: opacity 2s ease-in-out;
             pointer-events: none;
-            position: relative;
+        }
+
+        .morpankh-svg {
+            width: 150px;
+            height: 150px;
+            filter: drop-shadow(0 0 20px rgba(0, 255, 128, 0.5));
+            animation: morpankhSweep 4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            transform-origin: center bottom;
+        }
+
+        @keyframes morpankhSweep {
+            0% { transform: scale(0) rotate(-45deg); opacity: 0; }
+            40% { transform: scale(1.5) rotate(0deg); opacity: 1; }
+            60% { transform: scale(1.5) rotate(0deg); opacity: 1; }
+            100% { transform: scale(50) rotate(45deg); opacity: 0; }
+        }
+
+        .om-chant {
+            position: absolute;
+            color: var(--gold);
+            font-size: 3rem;
+            opacity: 0;
+            animation: omFade 4s ease forwards;
+        }
+
+        @keyframes omFade {
+            0% { opacity: 0; transform: translateY(20px); }
+            30% { opacity: 1; transform: translateY(0); }
+            70% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-20px); }
+        }
+
+        /* ---------------------------------
+           VIDEO & UI
+           --------------------------------- */
+        .video-container {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center; /* Center focus on mobile */
+            opacity: 0.9;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
+            pointer-events: none;
             z-index: 2;
         }
 
-        /* Holy Smoke Effect (Dhoop) */
-        .smoke-container {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 5;
-            pointer-events: none;
-            opacity: 0.4;
-            overflow: hidden;
-        }
-        
-        .smoke {
-            position: absolute;
-            bottom: -50px;
-            left: 50%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 60%);
-            border-radius: 50%;
-            filter: blur(40px);
-            animation: rise 10s infinite linear;
-            transform-origin: center;
-        }
-        
-        .smoke:nth-child(2) { left: 20%; animation-duration: 14s; animation-delay: 1s; width: 300px; height: 300px; }
-        .smoke:nth-child(3) { left: 80%; animation-duration: 12s; animation-delay: 3s; width: 350px; height: 350px; }
-
-        @keyframes rise {
-            0% { transform: translateY(0) scale(1); opacity: 0; }
-            20% { opacity: 0.5; }
-            100% { transform: translateY(-120vh) scale(2); opacity: 0; }
-        }
-
-        /* The "Flashlight" / Diya Effect */
-        .aarti-lamp {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: var(--cursor-size);
-            height: var(--cursor-size);
-            transform: translate(-50%, -50%);
-            background: var(--lamp-glow);
-            border-radius: 50%;
-            pointer-events: none;
-            mix-blend-mode: hard-light; 
-            z-index: 10;
-            transition: width 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), height 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        /* Flame Icon */
-        .flame-cursor {
-            position: absolute;
-            font-size: 2rem;
-            color: #ff9800;
-            transform: translate(-50%, -50%) rotate(-15deg);
-            pointer-events: none;
-            z-index: 11;
-            filter: drop-shadow(0 0 10px #ff5722);
-            animation: flicker 0.1s infinite alternate;
-        }
-
-        @keyframes flicker {
-            0% { opacity: 0.8; transform: translate(-50%, -50%) scale(1) rotate(-15deg); }
-            100% { opacity: 1; transform: translate(-50%, -50%) scale(1.1) rotate(-10deg); }
-        }
-
-        /* Sparkle Trail */
-        .lamp-sparkle {
-            position: absolute;
-            background: var(--gold);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 12;
-            animation: sparkleAnim 0.8s linear forwards;
-            box-shadow: 0 0 4px var(--gold);
-        }
-
-        @keyframes sparkleAnim {
-            0% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0; transform: scale(0) translateY(-20px); }
-        }
-
-        /* Floating Mantras */
-        .floating-mantra {
-            position: absolute;
-            color: rgba(255, 215, 0, 0.6);
-            font-family: 'Great Vibes', cursive;
-            font-size: 1.5rem;
-            pointer-events: none;
-            z-index: 4;
-            animation: floatUp 4s forwards linear;
-            text-shadow: 0 0 5px rgba(255, 100, 0, 0.5);
-        }
-
-        @keyframes floatUp {
-            0% { opacity: 0; transform: translateY(0) scale(0.8); }
-            20% { opacity: 0.8; transform: translateY(-20px) scale(1); }
-            100% { opacity: 0; transform: translateY(-100px) scale(1.2); }
-        }
-
-        /* Puja Thali (Controls) */
-        .puja-thali {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 10px 25px;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            z-index: 100;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            cursor: default; /* Enable cursor here */
-        }
-
-        .thali-btn {
-            background: none;
-            border: none;
-            color: var(--gold);
-            font-size: 1.6rem;
-            cursor: pointer;
-            transition: transform 0.2s, color 0.2s;
-            position: relative;
-            cursor: pointer !important; /* Force pointer */
-            padding: 5px;
-        }
-
-        .thali-btn:hover { transform: scale(1.2); color: #fff; }
-        .thali-btn.active { color: var(--radha-pink); transform: scale(1.1); }
-        
-        .thali-btn::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            top: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.8rem;
-            background: rgba(0,0,0,0.8);
-            padding: 5px 10px;
-            border-radius: 5px;
-            opacity: 0;
-            pointer-events: none;
-            transition: 0.3s;
-            white-space: nowrap;
-            font-family: sans-serif;
-            color: #fff;
-        }
-        .thali-btn:hover::after { opacity: 1; top: -50px; }
-
-        /* Flower Particle */
-        .flower {
-            position: absolute;
-            pointer-events: none;
-            font-size: 2rem;
-            animation: fall 2s forwards ease-in;
-            z-index: 15;
-            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
-        }
-
-        @keyframes fall {
-            0% { transform: translateY(-50px) rotate(0deg) scale(0); opacity: 0; }
-            10% { opacity: 1; transform: translateY(0) rotate(20deg) scale(1); }
-            100% { transform: translateY(300px) rotate(180deg) scale(0.8); opacity: 0; }
-        }
-
-        /* Bell Ripple */
-        .bell-ripple {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            border: 4px solid var(--gold);
-            border-radius: 50%;
-            width: 0; height: 0;
-            animation: rippleEffect 1.5s ease-out;
-            pointer-events: none;
-            z-index: 90;
-        }
-
-        @keyframes rippleEffect {
-            0% { width: 0; height: 0; opacity: 0.8; border-width: 5px; }
-            100% { width: 500px; height: 500px; opacity: 0; border-width: 0px; }
-        }
-
-        /* Om Aura */
-        .om-aura {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            border: 2px solid var(--gold);
-            border-radius: 50%;
-            opacity: 0;
-            pointer-events: none;
-            z-index: 8;
-            box-shadow: 0 0 20px var(--gold);
-            animation: omExpand 3s ease-out;
-        }
-
-        @keyframes omExpand {
-            0% { width: 0; height: 0; opacity: 0.8; border-width: 5px; }
-            50% { opacity: 0.4; }
-            100% { width: 80vw; height: 80vw; opacity: 0; border-width: 0; }
-        }
-
-        /* Instructions */
-        .instruction {
-            position: absolute;
-            top: 20px;
-            width: 100%;
-            text-align: center;
-            color: rgba(255, 255, 255, 0.5);
-            font-family: 'Great Vibes', cursive;
-            font-size: 1.2rem;
-            pointer-events: none;
-            z-index: 20;
-        }
-
-        /* Back Button */
         .back-btn {
             position: fixed;
             top: 20px;
@@ -283,281 +109,330 @@
             text-decoration: none;
             font-size: 1.5rem;
             z-index: 101;
-            cursor: pointer;
             transition: 0.3s;
         }
         .back-btn:hover { color: var(--gold); transform: translateX(-5px); }
 
-        /* Animation for Screen Shake */
-        @keyframes shake {
-            0% { transform: translate(1px, 1px) rotate(0deg); }
-            10% { transform: translate(-1px, -2px) rotate(-1deg); }
-            20% { transform: translate(-3px, 0px) rotate(1deg); }
-            30% { transform: translate(3px, 2px) rotate(0deg); }
-            40% { transform: translate(1px, -1px) rotate(1deg); }
-            50% { transform: translate(-1px, 2px) rotate(-1deg); }
-            60% { transform: translate(-3px, 1px) rotate(0deg); }
-            70% { transform: translate(3px, 1px) rotate(-1deg); }
-            80% { transform: translate(-1px, -1px) rotate(1deg); }
-            90% { transform: translate(1px, 2px) rotate(0deg); }
-            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        .instruction {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.2rem;
+            pointer-events: none;
+            z-index: 10;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
+
+        /* Aarti Flame cursor */
+        .flame-cursor {
+            position: absolute;
+            font-size: 2.5rem;
+            color: #ffaa00;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+            filter: drop-shadow(0 0 15px rgba(255, 170, 0, 0.9)) drop-shadow(0 0 40px #ff5500);
+            mix-blend-mode: screen;
+            animation: flicker 0.15s infinite alternate;
+        }
+        
+        /* Dynamic Light Aura following flame */
+        .flame-aura {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,150,50,0.3) 0%, rgba(255,100,0,0.1) 30%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 3;
+            mix-blend-mode: overlay;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.85; transform: translate(-50%, -50%) scale(0.95) rotate(-2deg); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1.05) rotate(2deg); filter: drop-shadow(0 0 25px #ffaa00) drop-shadow(0 0 50px #ff5500); }
+        }
+
+        /* Puja Thali */
+        .puja-thali {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            backdrop-filter: blur(15px);
+            z-index: 101;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .thali-btn {
+            background: rgba(255, 215, 0, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            color: var(--gold);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            position: relative;
+        }
+        .thali-btn:hover, .thali-btn.active {
+            background: rgba(255, 215, 0, 0.25);
+            transform: translateY(-8px);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+
+        /* Tooltip */
+        .thali-btn::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 120%; left: 50%;
+            transform: translateX(-50%) scale(0);
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 1px;
+            opacity: 0;
+            transition: 0.3s;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        .thali-btn:hover::after { transform: translateX(-50%) scale(1); opacity: 1; }
+
+        /* Flower Particle */
+        .flower {
+            position: absolute;
+            pointer-events: none;
+            font-size: 2rem;
+            animation: fall 3s forwards ease-in;
+            z-index: 15;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-50px) rotate(0deg) scale(0); opacity: 0; }
+            10% { opacity: 1; transform: translateY(0) rotate(20deg) scale(1.2); }
+            100% { transform: translateY(100vh) rotate(180deg) scale(0.8); opacity: 0; }
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .puja-thali {
+                bottom: 15px;
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+                width: 90%;
+            }
+            .thali-btn { width: 45px; height: 45px; font-size: 1.2rem; }
+            .instruction { font-size: 1rem; padding: 0 10px; }
+            .back-btn { font-size: 2rem; top: 15px; left: 15px; }
+        }
+        
+        .video-placeholder {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgba(255,255,255,0.4);
+            font-family: Arial, sans-serif;
+            text-align: center;
+            z-index: 0;
+        }
+        .video-placeholder i { font-size: 3rem; margin-bottom: 10px; color: rgba(255, 215, 0, 0.4); }
 
     </style>
 </head>
 <body>
 
-    <a href="index.html" class="back-btn" title="Back to Home"><i class="ri-arrow-left-line"></i></a>
-
-    <div class="darshan-container" id="container">
-        
-        <!-- Instruction Overlay -->
-        <div class="instruction">
-            Scroll to adjust flame • Move mouse to reveal • Use Thali below
-        </div>
-
-        <!-- Smoke Effect -->
-        <div class="smoke-container">
-            <div class="smoke"></div>
-            <div class="smoke"></div>
-            <div class="smoke"></div>
-        </div>
-
-        <!-- Deity Image (Hidden by darkness) -->
-        <img src="about-main.png" alt="Radha Krishna" class="deity-image" id="deity">
-        
-        <!-- The Lamp Light -->
-        <div class="aarti-lamp" id="lamp"></div>
-        <div class="flame-cursor" id="flameIcon"><i class="ri-fire-fill"></i></div>
-
-        <!-- Puja Thali (Controls) -->
-        <div class="puja-thali" id="thali">
-            <button class="thali-btn" id="btnBell" data-tooltip="Ring Bell">🔔</button>
-            <button class="thali-btn" id="btnOm" data-tooltip="Chant Om">🕉️</button>
-            <button class="thali-btn" id="btnFlower" data-tooltip="Offer Flowers">🌸</button>
-            <button class="thali-btn" id="btnConch" data-tooltip="Blow Shankh">🐚</button>
-            <button class="thali-btn" id="btnAuto" data-tooltip="Auto Aarti">🔄</button>
-        </div>
+    <!-- Morpankh Transition Overlay -->
+    <div id="morpankh-overlay">
+        <div class="om-chant">ॐ</div>
+        <!-- SVG Peacock Feather Curve -->
+        <svg class="morpankh-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 95 C 40 80, 20 60, 20 35 C 20 15, 35 5, 50 5 C 65 5, 80 15, 80 35 C 80 60, 60 80, 50 95 Z" fill="url(#pankhGrad)"/>
+            <circle cx="50" cy="35" r="15" fill="#004d40"/>
+            <circle cx="50" cy="35" r="8" fill="#ffb300"/>
+            <circle cx="50" cy="35" r="4" fill="#00e5ff"/>
+            <defs>
+                <linearGradient id="pankhGrad" x1="50" y1="5" x2="50" y2="95" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#00e5ff"/>
+                    <stop offset="0.5" stop-color="#00c853"/>
+                    <stop offset="1" stop-color="#004d40"/>
+                </linearGradient>
+            </defs>
+        </svg>
     </div>
 
-    <!-- Audio Elements -->
-    <script>
-        const container = document.getElementById('container');
-        const lamp = document.getElementById('lamp');
-        const flameIcon = document.getElementById('flameIcon');
-        const deity = document.getElementById('deity');
-        const thali = document.getElementById('thali');
+    <!-- UI Elements -->
+    <a href="index.html" class="back-btn" title="Back to Home"><i class="ri-arrow-left-line"></i></a>
+    
+    <div class="instruction">
+        Touch or Move to perform Aarti
+    </div>
+
+    <!-- Cinematic Video Container -->
+    <div class="video-container">
+        <!-- Placeholder text when video is missing -->
+        <div class="video-placeholder">
+            <i class="ri-film-line"></i>
+            <p>Please place your AI-generated cinematic video<br>here and name it <strong>darshan-video.mp4</strong></p>
+        </div>
         
-        // --- AUDIO SETUP ---
+        <!-- The actual video element -->
+        <video id="darshanVideo" loop muted playsinline autoplay>
+            <!-- USER MUST PROVIDE THIS FILE -->
+            <source src="darshan-video.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+    
+    <!-- Dynamic Light Aura & Flame Cursor -->
+    <div class="flame-aura" id="flameAura"></div>
+    <div class="flame-cursor" id="flameIcon"><i class="ri-fire-fill"></i></div>
+
+    <!-- Puja Thali -->
+    <div class="puja-thali" id="thali">
+        <button class="thali-btn" id="btnBell" data-tooltip="Ring Bell">🔔</button>
+        <button class="thali-btn" id="btnOm" data-tooltip="Chant Om">🕉️</button>
+        <button class="thali-btn" id="btnFlower" data-tooltip="Offer Flowers">🌸</button>
+        <button class="thali-btn" id="btnConch" data-tooltip="Blow Shankh">🐚</button>
+        <button class="thali-btn" id="btnAuto" data-tooltip="Auto Aarti">🔄</button>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // --- 1. MORPANKH TRANSITION & VIDEO PLAY ---
+        window.addEventListener('load', () => {
+            const video = document.getElementById('darshanVideo');
+            
+            // Try to play the video (browsers require interaction for audio, but it's muted so it should autoplay)
+            video.play().catch(e => console.log("Video not found or autoplay prevented:", e));
+
+            setTimeout(() => {
+                const overlay = document.getElementById('morpankh-overlay');
+                overlay.style.opacity = '0';
+                setTimeout(() => overlay.remove(), 2000); // Remove from DOM after fade
+            }, 3000);
+        });
+
+        // --- 2. AUDIO SETUP ---
         const bellAudio = new Audio('bell.mp3');
         const sankhAudio = new Audio('sankh.mp3');
         const omAudio = new Audio('om.mp3'); 
-        const aartiAudio = new Audio('aarti.mp3'); // Added Aarti Audio
-        aartiAudio.loop = true; // Loop the aarti music
-        
-        let cursorSize = 250; 
+        const aartiAudio = new Audio('aarti.mp3'); 
+        aartiAudio.loop = true;
+
+        // --- 3. AARTI FLAME DYNAMICS ---
+        const flameIcon = document.getElementById('flameIcon');
+        const flameAura = document.getElementById('flameAura');
         let isAutoAarti = false;
-        let aartiFrame;
-        let aartiAngle = 0;
+        let autoAartiAngle = 0;
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
 
-        // --- 1. MOUSE MOVEMENT (AARTI) ---
-        document.addEventListener('mousemove', (e) => {
+        function updatePointer(x, y) {
+            mouseX = x;
+            mouseY = y;
             if (!isAutoAarti) {
-                updateLampPosition(e.clientX, e.clientY);
-                createSparkle(e.clientX, e.clientY);
+                flameIcon.style.left = x + 'px';
+                flameIcon.style.top = y + 'px';
+                flameAura.style.left = x + 'px';
+                flameAura.style.top = y + 'px';
             }
-        });
-
-        // Mouse Wheel to Resize Flame (Scroll)
-        document.addEventListener('wheel', (e) => {
-            if (e.deltaY < 0) {
-                cursorSize = Math.min(cursorSize + 20, 600); // Max size
-            } else {
-                cursorSize = Math.max(cursorSize - 20, 100); // Min size
-            }
-            document.documentElement.style.setProperty('--cursor-size', cursorSize + 'px');
-        });
-
-        function updateLampPosition(x, y) {
-            lamp.style.left = x + 'px';
-            lamp.style.top = y + 'px';
-            
-            flameIcon.style.left = x + 'px';
-            flameIcon.style.top = y + 'px';
-
-            // Dynamic Brightness Calculation
-            const centerX = window.innerWidth / 2;
-            const centerY = window.innerHeight / 2;
-            const dist = Math.hypot(x - centerX, y - centerY);
-            const maxDist = Math.hypot(centerX, centerY);
-            
-            // Image gets brighter as lamp gets larger or closer to center
-            const proximityBrightness = (1 - (dist / maxDist)) * 0.3;
-            const sizeBrightness = (cursorSize / 600) * 0.2;
-            
-            deity.style.opacity = 0.1 + proximityBrightness + sizeBrightness;
         }
 
-        function createSparkle(x, y) {
-            if (Math.random() > 0.3) return; // Limit sparkles
-            const sparkle = document.createElement('div');
-            sparkle.classList.add('lamp-sparkle');
-            
-            // Random scatter
-            const dx = (Math.random() - 0.5) * 40;
-            const dy = (Math.random() - 0.5) * 40;
-            
-            sparkle.style.left = (x + dx) + 'px';
-            sparkle.style.top = (y + dy) + 'px';
-            sparkle.style.width = Math.random() * 4 + 2 + 'px';
-            sparkle.style.height = sparkle.style.width;
-            
-            document.body.appendChild(sparkle);
-            setTimeout(() => sparkle.remove(), 800);
-        }
+        window.addEventListener('mousemove', (e) => updatePointer(e.clientX, e.clientY));
+        window.addEventListener('touchmove', (e) => {
+            // e.preventDefault(); // allow scrolling if needed, but we have overflow: hidden
+            updatePointer(e.touches[0].clientX, e.touches[0].clientY);
+        }, { passive: false });
 
-        // --- 2. THALI INTERACTIONS ---
-        
-        // Bell
-        document.getElementById('btnBell').addEventListener('click', (e) => {
-            e.stopPropagation(); 
+        // Auto Aarti Loop
+        function animateAarti() {
+            if (isAutoAarti) {
+                autoAartiAngle += 0.04; // Speed of rotation
+                
+                // Elliptical orbit calculation (Lissajous curve)
+                const centerX = window.innerWidth / 2;
+                const centerY = window.innerHeight / 2;
+                
+                // Creates a beautiful figure-8 or circular sweeping motion
+                const aX = centerX + Math.sin(autoAartiAngle) * (window.innerWidth * 0.25);
+                const aY = centerY + Math.cos(autoAartiAngle * 2) * (window.innerHeight * 0.15) + (window.innerHeight * 0.1);
+                
+                flameIcon.style.left = aX + 'px';
+                flameIcon.style.top = aY + 'px';
+                flameAura.style.left = aX + 'px';
+                flameAura.style.top = aY + 'px';
+            }
+            requestAnimationFrame(animateAarti);
+        }
+        animateAarti(); // Start animation loop
+
+        // --- 4. THALI INTERACTIONS ---
+        document.getElementById('btnBell').addEventListener('click', () => {
             bellAudio.currentTime = 0;
-            bellAudio.play().catch(err => console.log("Audio error:", err));
-
-            const ripple = document.createElement('div');
-            ripple.classList.add('bell-ripple');
-            document.body.appendChild(ripple);
-            setTimeout(() => ripple.remove(), 1500);
-            
-            document.body.style.animation = "shake 0.5s ease";
-            setTimeout(() => document.body.style.animation = "", 500);
+            bellAudio.play();
         });
 
-        // Flower
-        document.getElementById('btnFlower').addEventListener('click', (e) => {
-            e.stopPropagation();
-            for(let i=0; i<15; i++) {
+        document.getElementById('btnOm').addEventListener('click', () => {
+            omAudio.currentTime = 0;
+            omAudio.play();
+        });
+
+        document.getElementById('btnConch').addEventListener('click', () => {
+            sankhAudio.currentTime = 0;
+            sankhAudio.play();
+        });
+
+        document.getElementById('btnFlower').addEventListener('click', () => {
+            for(let i=0; i<20; i++) {
                 setTimeout(() => {
-                    spawnFlower(Math.random() * window.innerWidth, -50);
-                }, i * 200);
+                    const flower = document.createElement('div');
+                    flower.classList.add('flower');
+                    const flowers = ['🌸', '🌺', '🌹', '🌼', '✨'];
+                    flower.innerText = flowers[Math.floor(Math.random() * flowers.length)];
+                    flower.style.left = Math.random() * window.innerWidth + 'px';
+                    document.body.appendChild(flower);
+                    
+                    // Clean up after animation
+                    setTimeout(() => flower.remove(), 3000);
+                }, i * 150); // Staggered falling effect
             }
         });
 
-        // Conch (Shankh)
-        document.getElementById('btnConch').addEventListener('click', (e) => {
-            e.stopPropagation();
-            sankhAudio.currentTime = 0;
-            sankhAudio.play().catch(err => console.log("Audio error:", err));
-
-            const ring = document.createElement('div');
-            ring.style.position = 'fixed';
-            ring.style.top = '50%';
-            ring.style.left = '50%';
-            ring.style.transform = 'translate(-50%, -50%)';
-            ring.style.width = '10px';
-            ring.style.height = '10px';
-            ring.style.border = '2px solid white';
-            ring.style.borderRadius = '50%';
-            ring.style.boxShadow = '0 0 20px white';
-            ring.style.transition = 'all 2s ease-out';
-            ring.style.opacity = '1';
-            ring.style.zIndex = '99';
-            document.body.appendChild(ring);
-            
-            setTimeout(() => {
-                ring.style.width = '150vw';
-                ring.style.height = '150vw';
-                ring.style.opacity = '0';
-            }, 50);
-            setTimeout(() => ring.remove(), 2000);
-        });
-
-        // Om Chant
-        document.getElementById('btnOm').addEventListener('click', (e) => {
-            e.stopPropagation();
-            omAudio.currentTime = 0;
-            omAudio.play().catch(err => console.log("Audio error (Om):", err));
-
-            const aura = document.createElement('div');
-            aura.classList.add('om-aura');
-            document.body.appendChild(aura);
-            setTimeout(() => aura.remove(), 3000);
-        });
-
-        // Auto Aarti
         const btnAuto = document.getElementById('btnAuto');
-        btnAuto.addEventListener('click', (e) => {
-            e.stopPropagation();
+        btnAuto.addEventListener('click', () => {
             isAutoAarti = !isAutoAarti;
-            
             if (isAutoAarti) {
                 btnAuto.classList.add('active');
-                aartiAudio.play().catch(err => console.log("Aarti audio error:", err)); // Play Aarti Music
-                animateAarti();
+                aartiAudio.play();
+                autoAartiAngle = 0;
             } else {
                 btnAuto.classList.remove('active');
-                aartiAudio.pause(); // Stop Aarti Music
-                aartiAudio.currentTime = 0;
-                cancelAnimationFrame(aartiFrame);
+                aartiAudio.pause();
+                // Return flame to cursor smoothly
+                flameIcon.style.left = mouseX + 'px';
+                flameIcon.style.top = mouseY + 'px';
+                flameAura.style.left = mouseX + 'px';
+                flameAura.style.top = mouseY + 'px';
             }
         });
-
-        function animateAarti() {
-            if (!isAutoAarti) return;
-            
-            const centerX = window.innerWidth / 2;
-            const centerY = window.innerHeight / 2;
-            const radius = 150;
-            
-            // Circular motion
-            aartiAngle += 0.03;
-            const x = centerX + Math.cos(aartiAngle) * radius;
-            const y = centerY + Math.sin(aartiAngle) * radius;
-            
-            updateLampPosition(x, y);
-            createSparkle(x, y); 
-            
-            aartiFrame = requestAnimationFrame(animateAarti);
-        }
-
-        // Helper: Spawn Flower
-        function spawnFlower(x, startY) {
-            const flower = document.createElement('div');
-            flower.classList.add('flower');
-            flower.innerText = Math.random() > 0.5 ? '🌸' : '🌼';
-            flower.style.left = x + 'px';
-            flower.style.top = startY + 'px';
-            container.appendChild(flower);
-            setTimeout(() => flower.remove(), 2000);
-        }
-
-        // --- 3. AMBIENT MANTRAS ---
-        const mantras = ["Radhe Radhe", "Jai Shri Krishna", "Hare Krishna", "Hari Bol", "Prem Mandir"];
-        
-        setInterval(() => {
-            const mantra = document.createElement('div');
-            mantra.classList.add('floating-mantra');
-            mantra.innerText = mantras[Math.floor(Math.random() * mantras.length)];
-            
-            const x = Math.random() * (window.innerWidth - 100);
-            const y = Math.random() * (window.innerHeight - 100);
-            
-            mantra.style.left = x + 'px';
-            mantra.style.top = y + 'px';
-            
-            container.appendChild(mantra);
-            setTimeout(() => mantra.remove(), 4000);
-        }, 2000); 
-
-        // Mobile Touch Support with Prevent Default to avoid scrolling
-        document.addEventListener('touchmove', (e) => {
-            e.preventDefault(); // This is the key fix for mobile scroll processing
-            const touch = e.touches[0];
-            if (!isAutoAarti) {
-                updateLampPosition(touch.clientX, touch.clientY);
-                createSparkle(touch.clientX, touch.clientY);
-            }
-        }, { passive: false });
 
     </script>
 </body>
