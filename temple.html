@@ -372,8 +372,11 @@
                 const centerY = window.innerHeight / 2;
                 
                 // Creates a beautiful figure-8 or circular sweeping motion
-                const aX = centerX + Math.sin(autoAartiAngle) * (window.innerWidth * 0.25);
-                const aY = centerY + Math.cos(autoAartiAngle * 2) * (window.innerHeight * 0.15) + (window.innerHeight * 0.1);
+                // Bound the radius so it never forces mobile screens to overflow
+                const radiusX = Math.min(window.innerWidth * 0.25, 120);
+                const radiusY = Math.min(window.innerHeight * 0.15, 80);
+                const aX = centerX + Math.sin(autoAartiAngle) * radiusX;
+                const aY = centerY + Math.cos(autoAartiAngle * 2) * radiusY + 50;
                 
                 flameIcon.style.left = aX + 'px';
                 flameIcon.style.top = aY + 'px';

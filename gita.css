@@ -52,7 +52,7 @@ body {
 
 .gita-title {
     font-family: var(--font-title);
-    font-size: 4rem;
+    font-size: clamp(2.5rem, 5vw + 1rem, 4rem);
     color: var(--gita-gold);
     margin-bottom: 1rem;
     text-shadow: 0 0 20px rgba(255, 179, 0, 0.4);
@@ -341,7 +341,6 @@ body {
    MOBILE RESPONSIVENESS
    ========================================= */
 @media screen and (max-width: 768px) {
-    .gita-title { font-size: 2.8rem; }
     .shloka-grid { grid-template-columns: 1fr; }
     .shloka-sanskrit { font-size: 1.2rem; }
     .gita-controls { flex-direction: column; gap: 15px; }
